@@ -1,120 +1,120 @@
-import React, { Component } from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { withRouter } from 'react-router-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import DoneIcon from '@material-ui/icons/Done';
-import TextField from '@material-ui/core/TextField';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
-import Fade from '@material-ui/core/Fade';
-import Back from './common/Back';
-import InputLabel from '@material-ui/core/InputLabel';
-import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
-import jwt from 'jsonwebtoken';
-import Auth from '../utils/auth';
+import React, { Component } from "react";
+import withStyles from "@material-ui/core/styles/withStyles";
+import { withRouter } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import DoneIcon from "@material-ui/icons/Done";
+import TextField from "@material-ui/core/TextField";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import Checkbox from "@material-ui/core/Checkbox";
+import Fade from "@material-ui/core/Fade";
+import Back from "./common/Back";
+import InputLabel from "@material-ui/core/InputLabel";
+import gql from "graphql-tag";
+import { Mutation } from "react-apollo";
+import jwt from "jsonwebtoken";
+import Auth from "../utils/auth";
 const auth = new Auth();
 
-const backgroundShape = require('../images/shape.svg');
+const backgroundShape = require("../images/shape.svg");
 
-const logo = require('../images/logo.svg');
+const logo = require("../images/logo.svg");
 
-const numeral = require('numeral');
-numeral.defaultFormat('0');
+const numeral = require("numeral");
+numeral.defaultFormat("0");
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.secondary['A100'],
-    overflow: 'hidden',
+    backgroundColor: theme.palette.secondary["A100"],
+    overflow: "hidden",
     //background: `url(${backgroundShape}) no-repeat`,
-    backgroundSize: 'cover',
-    backgroundPosition: '0 400px',
+    backgroundSize: "cover",
+    backgroundPosition: "0 400px",
     marginTop: 10,
     padding: 20,
-    paddingBottom: 500
+    paddingBottom: 500,
   },
   grid: {
-    margin: `0 ${theme.spacing.unit * 2}px`
+    margin: `0 ${theme.spacing.unit * 2}px`,
   },
   smallContainer: {
-    width: '100%'
+    width: "100%",
   },
   bigContainer: {
-    width: '80%'
+    width: "80%",
   },
   logo: {
     marginBottom: 24,
-    display: 'flex',
-    justifyContent: 'center'
+    display: "flex",
+    justifyContent: "center",
   },
   stepContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   stepGrid: {
     // width: '80%'
   },
   buttonBar: {
     marginTop: 32,
-    display: 'flex',
-    justifyContent: 'center'
+    display: "flex",
+    justifyContent: "center",
   },
   button: {
-    backgroundColor: theme.palette.primary['A100']
+    backgroundColor: theme.palette.primary["A100"],
   },
   backButton: {
-    marginRight: theme.spacing.unit
+    marginRight: theme.spacing.unit,
   },
   outlinedButtom: {
-    textTransform: 'uppercase',
-    margin: theme.spacing.unit
+    textTransform: "uppercase",
+    margin: theme.spacing.unit,
   },
   stepper: {
-    backgroundColor: 'transparent',
-    width: '100vw'
+    backgroundColor: "transparent",
+    width: "100vw",
   },
   paper: {
     padding: theme.spacing.unit * 3,
-    textAlign: 'left',
-    color: theme.palette.text.secondary
+    textAlign: "left",
+    color: theme.palette.text.secondary,
   },
   topInfo: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 42
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 42,
   },
   formControl: {
-    width: '100%'
+    width: "100%",
   },
   selectEmpty: {
-    marginTop: theme.spacing.unit * 2
-  }
+    marginTop: theme.spacing.unit * 2,
+  },
 });
 
 const getSteps = () => {
-  return ['Add Child', 'Select Session(s)', 'Select Time(s)', 'Add Notes'];
+  return ["Add Child", "Select Session(s)", "Select Time(s)", "Add Notes"];
 };
 
 const SUBMIT_SIGNUP = gql`
@@ -142,12 +142,12 @@ const SUBMIT_SIGNUP = gql`
 
 class Signup extends Component {
   state = {
-    email: '',
+    email: "",
     activeStep: 0,
-    age: '',
+    age: "",
     termsChecked: false,
     loading: true,
-    firstName: '',
+    firstName: "",
     session_1: false,
     session_2: false,
     session_3: false,
@@ -160,22 +160,22 @@ class Signup extends Component {
     sessionTime4: false,
     sessionTime5: false,
     sessionTime6: false,
-    sessionNotes1: '',
-    sessionNotes2: '',
-    sessionNotes3: '',
-    sessionNotes4: '',
-    sessionNotes5: '',
-    sessionNotes6: ''
+    sessionNotes1: "",
+    sessionNotes2: "",
+    sessionNotes3: "",
+    sessionNotes4: "",
+    sessionNotes5: "",
+    sessionNotes6: "",
   };
 
   componentDidMount() {
-    if (!localStorage.getItem('isLoggedIn')) {
+    if (!localStorage.getItem("isLoggedIn")) {
       auth.login();
     }
 
-    let email = jwt.decode(localStorage.getItem('idToken')).email;
+    let email = jwt.decode(localStorage.getItem("idToken")).email;
     this.setState({
-      email
+      email,
     });
   }
 
@@ -187,13 +187,7 @@ class Signup extends Component {
       session_4,
       session_5,
     } = this.state;
-    return (
-      !session_1 &&
-      !session_2 &&
-      !session_3 &&
-      !session_4 &&
-      !session_5
-    );
+    return !session_1 && !session_2 && !session_3 && !session_4 && !session_5;
   };
 
   isSessionTimeSelected = () => {
@@ -241,21 +235,21 @@ class Signup extends Component {
     return <div>Session</div>;
   };
 
-  isNextDisabled = activeStep => {
+  isNextDisabled = (activeStep) => {
     return activeStep === 0
       ? !this.state.age || !this.state.firstName
       : activeStep === 1
-        ? this.isSessionSelected()
-        : activeStep === 2
-          ? this.areTimesSelected()
-          : false;
+      ? this.isSessionSelected()
+      : activeStep === 2
+      ? this.areTimesSelected()
+      : false;
   };
 
   areTimesSelected = () => {
     let times = this.timeSelectFields();
     let flag = false;
-    times.map(time => {
-      if (!this.state[time.split('_').join('Time')]) {
+    times.map((time) => {
+      if (!this.state[time.split("_").join("Time")]) {
         flag = true;
       }
     });
@@ -263,49 +257,49 @@ class Signup extends Component {
   };
 
   handleNext = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep + 1
+    this.setState((state) => ({
+      activeStep: state.activeStep + 1,
     }));
     if (this.state.activeStep === 3) {
-      setTimeout(() => this.props.history.push('/dash'), 5000);
+      setTimeout(() => this.props.history.push("/dash"), 5000);
     }
   };
 
   handleBack = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep - 1
+    this.setState((state) => ({
+      activeStep: state.activeStep - 1,
     }));
   };
 
   handleReset = () => {
     this.setState({
-      activeStep: 0
+      activeStep: 0,
     });
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleTerms = event => {
+  handleTerms = (event) => {
     this.setState({ termsChecked: event.target.checked });
   };
 
-  handleChangeCheckbox = name => event => {
+  handleChangeCheckbox = (name) => (event) => {
     this.setState({ [name]: event.target.checked });
   };
 
   stepActions() {
     if (this.state.activeStep === 0) {
-      return 'Add Child';
+      return "Add Child";
     }
     if (this.state.activeStep === 1) {
-      return 'Confirm Sessions';
+      return "Confirm Sessions";
     }
     if (this.state.activeStep === 2) {
-      return 'Confirm Times';
+      return "Confirm Times";
     }
-    return 'Submit!';
+    return "Submit!";
   }
 
   selectedSessionTimes = () => {
@@ -314,7 +308,7 @@ class Signup extends Component {
       sessionTime2,
       sessionTime3,
       sessionTime4,
-      sessionTime5
+      sessionTime5,
     } = this.state;
 
     let arr = [
@@ -322,7 +316,7 @@ class Signup extends Component {
       sessionTime2,
       sessionTime3,
       sessionTime4,
-      sessionTime5
+      sessionTime5,
     ];
 
     return arr.map((session, index) => (session ? arr[index] : 0));
@@ -348,7 +342,7 @@ class Signup extends Component {
       sessionNotes5,
       sessionNotes6,
       firstName,
-      age
+      age,
     } = this.state;
 
     return (
@@ -364,7 +358,8 @@ class Signup extends Component {
                   alignItems="center"
                   justify="center"
                   container
-                  className={classes.grid}>
+                  className={classes.grid}
+                >
                   <Grid item xs={12}>
                     <div className={classes.logo}>
                       <img width={100} height={100} src={logo} />
@@ -374,8 +369,9 @@ class Signup extends Component {
                         <Stepper
                           classes={{ root: classes.stepper }}
                           activeStep={activeStep}
-                          alternativeLabel>
-                          {steps.map(label => {
+                          alternativeLabel
+                        >
+                          {steps.map((label) => {
                             return (
                               <Step key={label}>
                                 <StepLabel>{label}</StepLabel>
@@ -391,51 +387,56 @@ class Signup extends Component {
                               <div style={{ marginBottom: 32 }}>
                                 <Typography
                                   variant="subtitle1"
-                                  style={{ fontWeight: 'bold' }}
-                                  gutterBottom>
+                                  style={{ fontWeight: "bold" }}
+                                  gutterBottom
+                                >
                                   Child Name
                                 </Typography>
                                 <Typography variant="body2" gutterBottom>
                                   Please type in your child's name and age
                                 </Typography>
                               </div>
-                              <div style={{ display: 'flex' }}>
-                                <div style={{ flex: 1, padding: '5px' }}>
+                              <div style={{ display: "flex" }}>
+                                <div style={{ flex: 1, padding: "5px" }}>
                                   <Typography
                                     style={{
-                                      textTransform: 'uppercase',
-                                      marginBottom: 20
+                                      textTransform: "uppercase",
+                                      marginBottom: 20,
                                     }}
                                     color="secondary"
-                                    gutterBottom>
+                                    gutterBottom
+                                  >
                                     Name
                                   </Typography>
                                   <FormControl
                                     variant="outlined"
-                                    className={classes.formControl}>
+                                    className={classes.formControl}
+                                  >
                                     <TextField
                                       value={this.state.firstName}
-                                      onChange={e =>
+                                      onChange={(e) =>
                                         this.setState({
-                                          firstName: e.target.value
+                                          firstName: e.target.value,
                                         })
                                       }
                                     />
                                   </FormControl>
                                 </div>
-                                <div style={{ flex: 1, padding: '5px' }}>
+                                <div style={{ flex: 1, padding: "5px" }}>
                                   <Typography
                                     style={{
-                                      textTransform: 'uppercase'
+                                      textTransform: "uppercase",
                                       // marginBottom: 20
                                     }}
                                     color="secondary"
-                                    gutterBottom>
+                                    gutterBottom
+                                  >
                                     Age
                                   </Typography>
                                   <FormControl
                                     variant="outlined"
-                                    className={classes.formControl}>
+                                    className={classes.formControl}
+                                  >
                                     <Select
                                       value={this.state.age}
                                       onChange={this.handleChange}
@@ -444,7 +445,8 @@ class Signup extends Component {
                                           labelWidth={this.state.labelWidth}
                                           name="age"
                                         />
-                                      }>
+                                      }
+                                    >
                                       <MenuItem value="">
                                         <em>Select an option</em>
                                       </MenuItem>
@@ -480,7 +482,7 @@ class Signup extends Component {
                             <Grid item container xs={12}>
                               <Grid item xs={12}>
                                 <Typography variant="subtitle1" gutterBottom>
-                                  Choose the session(s) you want for{' '}
+                                  Choose the session(s) you want for{" "}
                                   {this.state.firstName}
                                 </Typography>
 
@@ -488,10 +490,10 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled
+                                        disabled={false}
                                         checked={session_1}
                                         onChange={this.handleChangeCheckbox(
-                                          'session_1'
+                                          "session_1"
                                         )}
                                         value="session_1"
                                       />
@@ -501,10 +503,10 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled
+                                        disabled={false}
                                         checked={session_2}
                                         onChange={this.handleChangeCheckbox(
-                                          'session_2'
+                                          "session_2"
                                         )}
                                         value="session_2"
                                       />
@@ -514,10 +516,10 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled
+                                        disabled={false}
                                         checked={session_3}
                                         onChange={this.handleChangeCheckbox(
-                                          'session_3'
+                                          "session_3"
                                         )}
                                         value="session_3"
                                       />
@@ -527,10 +529,10 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled
+                                        disabled={false}
                                         checked={session_4}
                                         onChange={this.handleChangeCheckbox(
-                                          'session_4'
+                                          "session_4"
                                         )}
                                         value="session_4"
                                       />
@@ -540,10 +542,10 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={true}
+                                        disabled={false}
                                         checked={session_5}
                                         onChange={this.handleChangeCheckbox(
-                                          'session_5'
+                                          "session_5"
                                         )}
                                         value="session_5"
                                       />
@@ -567,35 +569,38 @@ class Signup extends Component {
                               </div>
                               <div
                                 style={{
-                                  display: 'flex',
-                                  flexDirection: 'column'
-                                }}>
-                                {this.timeSelectFields().map(time => {
+                                  display: "flex",
+                                  flexDirection: "column",
+                                }}
+                              >
+                                {this.timeSelectFields().map((time) => {
                                   let name =
                                     time
-                                      .split('_')
-                                      .join(' ')
+                                      .split("_")
+                                      .join(" ")
                                       .charAt(0)
                                       .toUpperCase() +
                                     time
-                                      .split('_')
-                                      .join(' ')
+                                      .split("_")
+                                      .join(" ")
                                       .slice(1);
 
-                                  let stateTime = time.split('_').join('Time');
+                                  let stateTime = time.split("_").join("Time");
                                   return (
                                     <div
                                       style={{
                                         flex: 1,
-                                        width: '300px',
-                                        padding: '10px 0px'
-                                      }}>
+                                        width: "300px",
+                                        padding: "10px 0px",
+                                      }}
+                                    >
                                       <FormControl
                                         style={{
                                           flex: 1,
-                                          width: '300px',
-                                          padding: '10px 0px'
-                                        }}>
+                                          width: "300px",
+                                          padding: "10px 0px",
+                                        }}
+                                      >
                                         <InputLabel htmlFor="time-select-simple">
                                           {name}
                                         </InputLabel>
@@ -603,9 +608,10 @@ class Signup extends Component {
                                           value={this.state[stateTime]}
                                           onChange={this.handleChange}
                                           inputProps={{
-                                            name: time.split('_').join('Time'),
-                                            id: time
-                                          }}>
+                                            name: time.split("_").join("Time"),
+                                            id: time,
+                                          }}
+                                        >
                                           <MenuItem value="">
                                             <em>None</em>
                                           </MenuItem>
@@ -639,45 +645,48 @@ class Signup extends Component {
                               </div>
                               <div
                                 style={{
-                                  display: 'flex',
-                                  flexDirection: 'column'
-                                }}>
-                                {this.timeSelectFields().map(time => {
+                                  display: "flex",
+                                  flexDirection: "column",
+                                }}
+                              >
+                                {this.timeSelectFields().map((time) => {
                                   let name =
                                     time
-                                      .split('_')
-                                      .join(' ')
+                                      .split("_")
+                                      .join(" ")
                                       .charAt(0)
                                       .toUpperCase() +
                                     time
-                                      .split('_')
-                                      .join(' ')
+                                      .split("_")
+                                      .join(" ")
                                       .slice(1);
 
                                   let stateNotes = time
-                                    .split('_')
-                                    .join('Notes');
+                                    .split("_")
+                                    .join("Notes");
                                   return (
                                     <div
                                       style={{
                                         flex: 1,
-                                        width: '300px',
-                                        padding: '10px 0px'
-                                      }}>
+                                        width: "300px",
+                                        padding: "10px 0px",
+                                      }}
+                                    >
                                       <FormControl
                                         style={{
                                           flex: 1,
-                                          width: '300px',
-                                          padding: '10px 0px'
-                                        }}>
+                                          width: "300px",
+                                          padding: "10px 0px",
+                                        }}
+                                      >
                                         <TextField
-                                          placeholder={name + ' Notes'}
+                                          placeholder={name + " Notes"}
                                           value={this.state[stateNotes]}
                                           name={stateNotes}
-                                          onChange={e =>
+                                          onChange={(e) =>
                                             this.handleChange({
                                               ...e,
-                                              name: stateNotes
+                                              name: stateNotes,
                                             })
                                           }
                                         />
@@ -695,15 +704,17 @@ class Signup extends Component {
                           <Paper className={classes.paper}>
                             <div
                               style={{
-                                display: 'flex',
-                                justifyContent: 'center'
-                              }}>
-                              <div style={{ width: 380, textAlign: 'center' }}>
+                                display: "flex",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <div style={{ width: 380, textAlign: "center" }}>
                                 <div style={{ marginBottom: 32 }}>
                                   <Typography
                                     variant="h6"
-                                    style={{ fontWeight: 'bold' }}
-                                    gutterBottom>
+                                    style={{ fontWeight: "bold" }}
+                                    gutterBottom
+                                  >
                                     Robots working!
                                   </Typography>
                                   <Typography variant="body2" gutterBottom>
@@ -714,14 +725,17 @@ class Signup extends Component {
                                   <Fade
                                     in={loading}
                                     style={{
-                                      transitionDelay: loading ? '800ms' : '0ms'
+                                      transitionDelay: loading
+                                        ? "800ms"
+                                        : "0ms",
                                     }}
-                                    unmountOnExit>
+                                    unmountOnExit
+                                  >
                                     <CircularProgress
                                       style={{
                                         marginBottom: 32,
                                         width: 100,
-                                        height: 100
+                                        height: 100,
                                       }}
                                     />
                                   </Fade>
@@ -738,18 +752,20 @@ class Signup extends Component {
                               disabled={activeStep === 0}
                               onClick={this.handleBack}
                               className={classes.backButton}
-                              size="large">
+                              size="large"
+                            >
                               Back
                             </Button>
                           ) : (
-                              <Button
-                                disabled={activeStep === 0}
-                                onClick={this.handleBack}
-                                className={classes.backButton}
-                                size="large">
-                                Back
-                              </Button>
-                            )}
+                            <Button
+                              disabled={activeStep === 0}
+                              onClick={this.handleBack}
+                              className={classes.backButton}
+                              size="large"
+                            >
+                              Back
+                            </Button>
+                          )}
                           {activeStep === 3 ? (
                             <Button
                               variant="contained"
@@ -766,7 +782,7 @@ class Signup extends Component {
                                         session_3,
                                         session_4,
                                         session_5,
-                                        session_6
+                                        session_6,
                                       ],
                                       timePreference: this.selectedSessionTimes(),
                                       notes: [
@@ -775,52 +791,54 @@ class Signup extends Component {
                                         sessionNotes3,
                                         sessionNotes4,
                                         sessionNotes5,
-                                        sessionNotes6
+                                        sessionNotes6,
                                       ],
-                                      age
-                                    }
+                                      age,
+                                    },
                                   });
-                                  this.setState(state => ({
-                                    activeStep: state.activeStep + 1
+                                  this.setState((state) => ({
+                                    activeStep: state.activeStep + 1,
                                   }));
                                   setTimeout(
-                                    () => this.props.history.push('/dash'),
+                                    () => this.props.history.push("/dash"),
                                     5000
                                   );
                                 } catch (err) {
-                                  alert('something went wrong');
+                                  alert("something went wrong");
                                 }
                               }}
                               size="large"
                               style={
                                 this.state.age.length
                                   ? {
-                                    background: classes.button,
-                                    color: 'white'
-                                  }
+                                      background: classes.button,
+                                      color: "white",
+                                    }
                                   : {}
                               }
-                              disabled={this.isNextDisabled(activeStep)}>
+                              disabled={this.isNextDisabled(activeStep)}
+                            >
                               {this.stepActions()}
                             </Button>
                           ) : (
-                              <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={this.handleNext}
-                                size="large"
-                                style={
-                                  this.state.age.length
-                                    ? {
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              onClick={this.handleNext}
+                              size="large"
+                              style={
+                                this.state.age.length
+                                  ? {
                                       background: classes.button,
-                                      color: 'white'
+                                      color: "white",
                                     }
-                                    : {}
-                                }
-                                disabled={this.isNextDisabled(activeStep)}>
-                                {this.stepActions()}
-                              </Button>
-                            )}
+                                  : {}
+                              }
+                              disabled={this.isNextDisabled(activeStep)}
+                            >
+                              {this.stepActions()}
+                            </Button>
+                          )}
                         </div>
                       )}
                     </div>
