@@ -490,7 +490,7 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={false}
+                                        disabled={true}
                                         checked={session_1}
                                         onChange={this.handleChangeCheckbox(
                                           "session_1"
@@ -498,12 +498,12 @@ class Signup extends Component {
                                         value="session_1"
                                       />
                                     }
-                                    label="Session 1 - 4/27-5/13 - $90 (Includes heating fee)"
+                                    label="Session 1 - 4/26-5/19 - $125 (Includes $5 heating fee)"
                                   />
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={false}
+                                        disabled={true}
                                         checked={session_2}
                                         onChange={this.handleChangeCheckbox(
                                           "session_2"
@@ -511,12 +511,12 @@ class Signup extends Component {
                                         value="session_2"
                                       />
                                     }
-                                    label="Session 2 - 5/18-6/3 - $90 (Includes heating fee)"
+                                    label="Session 2 - 6/7-6/30 - $120"
                                   />
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={false}
+                                        disabled={true}
                                         checked={session_3}
                                         onChange={this.handleChangeCheckbox(
                                           "session_3"
@@ -524,12 +524,12 @@ class Signup extends Component {
                                         value="session_3"
                                       />
                                     }
-                                    label="Session 3 - 6/8-6/24 - $85"
+                                    label="Session 3 - 7/12-7/22 - $80"
                                   />
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={false}
+                                        disabled={true}
                                         checked={session_4}
                                         onChange={this.handleChangeCheckbox(
                                           "session_4"
@@ -537,12 +537,12 @@ class Signup extends Component {
                                         value="session_4"
                                       />
                                     }
-                                    label="Session 4  - 6/29-7/9 - $75"
+                                    label="Session 4  - 8/2-8/18 - $90"
                                   />
-                                  <FormControlLabel
+                                  {/* <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={false}
+                                        disabled={true}
                                         checked={session_5}
                                         onChange={this.handleChangeCheckbox(
                                           "session_5"
@@ -551,7 +551,7 @@ class Signup extends Component {
                                       />
                                     }
                                     label="Session 5 - 8/17-8/27 - $75"
-                                  />
+                                  /> */}
                                 </FormGroup>
                               </Grid>
                             </Grid>

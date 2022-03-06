@@ -1,15 +1,15 @@
-import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
-import Main from './components/Main';
-import Signup from './components/Signup';
-import ScrollToTop from './components/ScrollTop';
-import Home from './pages/Home/Home';
-import FAQ from './pages/FAQ/FAQ';
-import Callback from './pages/Callback/Callback';
-import AdminDashboard from './pages/AdminDash/AdminDashboard';
-import Auth from './utils/auth';
-import SignupSwimTeam from './components/SignupSwimTeam';
+import React from "react";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+import Main from "./components/Main";
+import Signup from "./components/Signup";
+import ScrollToTop from "./components/ScrollTop";
+import Home from "./pages/Home/Home";
+import FAQ from "./pages/FAQ/FAQ";
+import Callback from "./pages/Callback/Callback";
+import AdminDashboard from "./pages/AdminDash/AdminDashboard";
+import Auth from "./utils/auth";
+import SignupSwimTeam from "./components/SignupSwimTeam";
 const auth = new Auth();
 
 const handleAuthentication = (nextState, replace) => {
@@ -18,13 +18,13 @@ const handleAuthentication = (nextState, replace) => {
   }
 };
 
-export default props => (
+export default (props) => (
   <BrowserRouter>
     <ScrollToTop>
       <Switch>
         <Route
           path="/callback"
-          render={props => {
+          render={(props) => {
             handleAuthentication(props);
             return <Callback {...props} />;
           }}

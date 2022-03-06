@@ -26,7 +26,7 @@ export default class Home extends Component {
           '"  My motto is: Love what you do, Do what you love!',
         para2:
           "I have a degree in child development and raised 5 wonderful children. I am now e" +
-          "njoying watching my 10 grandchildren grow up and learn to swim!"
+          "njoying watching my 10 grandchildren grow up and learn to swim!",
       },
       {
         name: "Tarryn",
@@ -36,7 +36,7 @@ export default class Home extends Component {
           "tive synchronized swimmer for many years.",
         para2:
           "I also find joy in working with children. I graduated in elementary education & " +
-          "have 4 children of my own."
+          "have 4 children of my own.",
       },
       {
         name: "Kiley",
@@ -44,8 +44,8 @@ export default class Home extends Component {
         para1:
           "I grew up in the same spot as your kids, taking lessons from Celeste! Since then I have swam for about 14 years on swim team and in high school, taught many lessons, and coached swim team!",
         para2:
-          "I love helping kids be able to learn new techniques and be able to swim on their own!"
-      }
+          "I love helping kids be able to learn new techniques and be able to swim on their own!",
+      },
     ];
 
     //     April 2-18     9 classes  TWTH     $85  (includes heating fee)
@@ -58,39 +58,44 @@ export default class Home extends Component {
     const sessions = [
       {
         name: "Session 1",
-        dates: "April 27 - May 13",
-        length: "9 Lessons",
+        dates: "April 26 - May 19",
+        length: "12 Lessons",
         days: "T | W | Th",
-        cost: "$90"
+        cost: "$125",
+        disabled: false,
       },
       {
         name: "Session 2",
-        dates: "May 18 - June 3",
-        length: "9 Lessons",
+        dates: "June 7 - June 30",
+        length: "12 Lessons",
         days: "T | W | Th",
-        cost: "$90"
+        cost: "$120",
+        disabled: false,
       },
       {
         name: "Session 3",
-        dates: "June 8 - June 24",
-        length: "9 Lessons",
-        days: "T | W | Th",
-        cost: "$85"
+        dates: "July 12 - July 22",
+        length: "8 Lessons",
+        days: "T | W | Th | F",
+        cost: "$80",
+        disabled: false,
       },
       {
         name: "Session 4",
-        dates: "June 29 - July 9",
-        length: "8 Lessons",
-        days: "T | W | Th | F",
-        cost: "$75"
+        dates: "August 2 - August 18",
+        length: "9 Lessons",
+        days: "T | W | Th",
+        cost: "$90",
+        disabled: false,
       },
-      {
-        name: "Session 5",
-        dates: "August 17 - 27",
-        length: "8 Lessons",
-        days: "T | W | T | HF",
-        cost: "$75"
-      }
+      // {
+      //   name: "Session 5",
+      //   dates: "August 17 - 27",
+      //   length: "8 Lessons",
+      //   days: "T | W | T | HF",
+      //   cost: "$75",
+      // disabled: false
+      // }
     ];
 
     const image =
@@ -106,13 +111,13 @@ export default class Home extends Component {
           bgImage={image}
           blur={{
             min: -5,
-            max: 5
+            max: 5,
           }}
         >
           <div
             style={{
               height: "90vh",
-              backgroundColor: "rgba(0, 0, 0, 0.35)"
+              backgroundColor: "rgba(0, 0, 0, 0.35)",
             }}
           >
             <div className="sideBySide">
@@ -175,7 +180,7 @@ export default class Home extends Component {
               fontSize: "3.5vw",
               fontWeight: "400",
               height: "auto",
-              padding: "50px 0px"
+              padding: "50px 0px",
             }}
           >
             <span>&#9679; Each class is 1/2 hour long.</span>
@@ -223,7 +228,7 @@ export default class Home extends Component {
                 <div className="dates">
                   <span className="sessDesc" />
                   <span style={{ fontSize: ".65em", color: "grey" }}>
-                    {index <= 4 && "Session full"}
+                    {session.disabled ? "Session Full" : null}
                   </span>
                 </div>
               </div>
@@ -233,7 +238,7 @@ export default class Home extends Component {
             style={{
               width: "100%",
               display: "flex",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             {/* <a href={process.env.REACT_APP_LOGIN} className="signupButtonMid">
@@ -251,7 +256,7 @@ export default class Home extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "#55B3B0",
-            padding: "50px"
+            padding: "50px",
           }}
         >
           <iframe
@@ -259,7 +264,7 @@ export default class Home extends Component {
             style={{
               border: 0,
               width: "75vw",
-              height: "450px"
+              height: "450px",
             }}
             title="map"
             src="https://www.google.com/maps/embed/v1/place?q=pufferfish%20swim%20school&key=AIzaSyDAXE4JvR2q6QUimiMWFwouwgI5wSxH13A"
@@ -270,7 +275,8 @@ export default class Home extends Component {
           <div className="diagbottom" />
           <div className="diagbottomb" />
         </div>
-        &#9400; {new Date().getFullYear()} Puffer Fish Swim Lessons | Website & Design by{" "}
+        &#9400; {new Date().getFullYear()} Puffer Fish Swim Lessons | Website &
+        Design by{" "}
         <a style={{ color: "#55B3B0", textDecoration: "underline" }} href="/">
           TB Design
         </a>
