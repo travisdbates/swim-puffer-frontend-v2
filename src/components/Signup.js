@@ -490,7 +490,7 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={true}
+                                        disabled={false}
                                         checked={session_1}
                                         onChange={this.handleChangeCheckbox(
                                           "session_1"
@@ -503,7 +503,7 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={true}
+                                        disabled={false}
                                         checked={session_2}
                                         onChange={this.handleChangeCheckbox(
                                           "session_2"
@@ -516,7 +516,7 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={true}
+                                        disabled={false}
                                         checked={session_3}
                                         onChange={this.handleChangeCheckbox(
                                           "session_3"
@@ -529,7 +529,7 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={true}
+                                        disabled={false}
                                         checked={session_4}
                                         onChange={this.handleChangeCheckbox(
                                           "session_4"
@@ -542,7 +542,7 @@ class Signup extends Component {
                                   {/* <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={true}
+                                        disabled={false}
                                         checked={session_5}
                                         onChange={this.handleChangeCheckbox(
                                           "session_5"
