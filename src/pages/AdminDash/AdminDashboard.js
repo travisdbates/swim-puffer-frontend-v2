@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { withRouter, Link } from 'react-router-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Slider from '@material-ui/lab/Slider';
-import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
-import SimpleLineChart from './SimpleLineChart';
-import Months from '../../components/common/Months';
-import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
-import Loading from '../../components/common/Loading';
-import AdminTable from '../../components/table/AdminTable';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import Topbar from '../../components/Topbar';
-import jwt from 'jsonwebtoken';
-import Auth from '../../utils/auth';
+import React, { Component } from "react";
+import withStyles from "@material-ui/core/styles/withStyles";
+import { withRouter, Link } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import Slider from "@material-ui/lab/Slider";
+import Button from "@material-ui/core/Button";
+import Avatar from "@material-ui/core/Avatar";
+import SimpleLineChart from "./SimpleLineChart";
+import Months from "../../components/common/Months";
+import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
+import Loading from "../../components/common/Loading";
+import AdminTable from "../../components/table/AdminTable";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import Topbar from "../../components/Topbar";
+import jwt from "jsonwebtoken";
+import Auth from "../../utils/auth";
 const auth = new Auth();
 
-const numeral = require('numeral');
-numeral.defaultFormat('0,000');
+const numeral = require("numeral");
+numeral.defaultFormat("0,000");
 
 // const backgroundShape = require('../images/shape.svg');
 
@@ -48,92 +48,92 @@ const PARENT_QUERY = gql`
   }
 `;
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.grey['100'],
-    overflow: 'hidden',
-    backgroundSize: 'cover',
-    backgroundPosition: '0 400px',
-    paddingBottom: 200
+    backgroundColor: theme.palette.grey["100"],
+    overflow: "hidden",
+    backgroundSize: "cover",
+    backgroundPosition: "0 400px",
+    paddingBottom: 200,
   },
   grid: {
     width: 1600,
     margin: `0 ${theme.spacing.unit * 2}px`,
-    [theme.breakpoints.down('sm')]: {
-      width: 'calc(100% - 20px)'
-    }
+    [theme.breakpoints.down("sm")]: {
+      width: "calc(100% - 20px)",
+    },
   },
   loadingState: {
-    opacity: 0.05
+    opacity: 0.05,
   },
   paper: {
     padding: theme.spacing.unit * 3,
-    textAlign: 'left',
-    color: theme.palette.text.secondary
+    textAlign: "left",
+    color: theme.palette.text.secondary,
   },
   rangeLabel: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    paddingTop: theme.spacing.unit * 2
+    display: "flex",
+    justifyContent: "space-between",
+    paddingTop: theme.spacing.unit * 2,
   },
   topBar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   outlinedButtom: {
-    textTransform: 'uppercase',
-    margin: theme.spacing.unit
+    textTransform: "uppercase",
+    margin: theme.spacing.unit,
   },
   actionButtom: {
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
     margin: theme.spacing.unit,
     width: 152,
-    height: 36
+    height: 36,
   },
   blockCenter: {
     padding: theme.spacing.unit * 2,
-    textAlign: 'center'
+    textAlign: "center",
   },
   block: {
-    padding: theme.spacing.unit * 2
+    padding: theme.spacing.unit * 2,
   },
   loanAvatar: {
-    display: 'inline-block',
-    verticalAlign: 'center',
+    display: "inline-block",
+    verticalAlign: "center",
     width: 16,
     height: 16,
     marginRight: 10,
     marginBottom: -2,
     color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
   },
   interestAvatar: {
-    display: 'inline-block',
-    verticalAlign: 'center',
+    display: "inline-block",
+    verticalAlign: "center",
     width: 16,
     height: 16,
     marginRight: 10,
     marginBottom: -2,
     color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.light
+    backgroundColor: theme.palette.primary.light,
   },
   inlining: {
-    display: 'inline-block',
-    marginRight: 10
+    display: "inline-block",
+    marginRight: 10,
   },
   buttonBar: {
-    display: 'flex'
+    display: "flex",
   },
   noBorder: {
-    borderBottomStyle: 'hidden'
+    borderBottomStyle: "hidden",
   },
   mainBadge: {
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: theme.spacing.unit * 4,
-    marginBottom: theme.spacing.unit * 4
-  }
+    marginBottom: theme.spacing.unit * 4,
+  },
 });
 
 const monthRange = Months;
@@ -149,7 +149,7 @@ class AdminDashboard extends Component {
     monthlyPayment: 0,
     totalPayment: 0,
     data: [],
-    email: ''
+    email: "",
   };
 
   updateValues() {
@@ -166,7 +166,7 @@ class AdminDashboard extends Component {
       return {
         name: monthRange[i],
         Type: delayed ? 0 : Math.ceil(monthlyPayment).toFixed(0),
-        OtherType: Math.ceil(monthlyInterest).toFixed(0)
+        OtherType: Math.ceil(monthlyInterest).toFixed(0),
       };
     });
 
@@ -175,19 +175,19 @@ class AdminDashboard extends Component {
       totalInterest,
       totalPayment,
       monthlyPayment,
-      data
+      data,
     });
   }
 
   componentDidMount() {
     this.updateValues();
-    if (!localStorage.getItem('isLoggedIn')) {
+    if (!localStorage.getItem("isLoggedIn")) {
       auth.login();
     }
 
-    let email = jwt.decode(localStorage.getItem('idToken')).email;
+    let email = jwt.decode(localStorage.getItem("idToken")).email;
     this.setState({
-      email
+      email,
     });
   }
 
@@ -216,7 +216,7 @@ class AdminDashboard extends Component {
       monthlyInterest,
       data,
       loading,
-      email
+      email,
     } = this.state;
     const currentPath = this.props.location.pathname;
 
@@ -224,23 +224,25 @@ class AdminDashboard extends Component {
       <Query
         fetchPolicy="cache-and-network"
         variables={{ email }}
-        query={PARENT_QUERY}>
+        query={PARENT_QUERY}
+      >
         {({ loading, error, data }) => {
           if (loading) {
             return (
               <div
                 style={{
-                  display: 'flex',
-                  width: '100vw',
-                  height: '100vh',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}>
+                  display: "flex",
+                  width: "100vw",
+                  height: "100vh",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 <CircularProgress
                   style={{
                     marginBottom: 32,
                     width: 100,
-                    height: 100
+                    height: 100,
                   }}
                 />
               </div>
@@ -251,16 +253,17 @@ class AdminDashboard extends Component {
             return (
               <div
                 style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}>
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 <span>Oops... Something went wrong.</span>
               </div>
             );
           }
           if (!data.getParent.admin) {
-            window.location.replace('/dash');
+            window.location.replace("/dash");
           }
           return (
             <React.Fragment>
@@ -273,7 +276,8 @@ class AdminDashboard extends Component {
                     alignItems="center"
                     justify="center"
                     container
-                    className={classes.grid}>
+                    className={classes.grid}
+                  >
                     <Grid item xs={12}>
                       <div className={classes.topBar}>
                         <div className={classes.block}>
@@ -411,7 +415,8 @@ class AdminDashboard extends Component {
                       <Grid item xl={12} md={12}>
                         <Paper
                           className={classes.paper}
-                          style={{ position: 'relative' }}>
+                          style={{ position: "relative" }}
+                        >
                           {/* <Loading loading={loading} /> */}
 
                           <Typography variant="subtitle1" gutterBottom>
@@ -430,8 +435,97 @@ class AdminDashboard extends Component {
                                 className={classes.inlining}
                                 color="secondary"
                                 variant="h6"
-                                gutterBottom>
+                                gutterBottom
+                              >
                                 {data.getAllStudents.length} total signups
+                              </Typography>
+                            </div>
+                            <div className={classes.inlining}>
+                              <Avatar className={classes.loanAvatar} />
+                              <Typography
+                                className={classes.inlining}
+                                variant="subtitle2"
+                                gutterBottom
+                              />
+                              <Typography
+                                className={classes.inlining}
+                                color="secondary"
+                                variant="h6"
+                                gutterBottom
+                              >
+                                {
+                                  data.getAllStudents.filter(
+                                    (signup) => signup.sessionPreference === "1"
+                                  ).length
+                                }
+                                {" - "}
+                                1st Session
+                              </Typography>
+                            </div>
+                            <div className={classes.inlining}>
+                              <Avatar className={classes.loanAvatar} />
+                              <Typography
+                                className={classes.inlining}
+                                variant="subtitle2"
+                                gutterBottom
+                              />
+                              <Typography
+                                className={classes.inlining}
+                                color="secondary"
+                                variant="h6"
+                                gutterBottom
+                              >
+                                {
+                                  data.getAllStudents.filter(
+                                    (signup) => signup.sessionPreference === "2"
+                                  ).length
+                                }
+                                {" - "}
+                                2nd Session
+                              </Typography>
+                            </div>
+                            <div className={classes.inlining}>
+                              <Avatar className={classes.loanAvatar} />
+                              <Typography
+                                className={classes.inlining}
+                                variant="subtitle2"
+                                gutterBottom
+                              />
+                              <Typography
+                                className={classes.inlining}
+                                color="secondary"
+                                variant="h6"
+                                gutterBottom
+                              >
+                                {
+                                  data.getAllStudents.filter(
+                                    (signup) => signup.sessionPreference === "3"
+                                  ).length
+                                }
+                                {" - "}
+                                3rd Session
+                              </Typography>
+                            </div>
+                            <div className={classes.inlining}>
+                              <Avatar className={classes.loanAvatar} />
+                              <Typography
+                                className={classes.inlining}
+                                variant="subtitle2"
+                                gutterBottom
+                              />
+                              <Typography
+                                className={classes.inlining}
+                                color="secondary"
+                                variant="h6"
+                                gutterBottom
+                              >
+                                {
+                                  data.getAllStudents.filter(
+                                    (signup) => signup.sessionPreference === "4"
+                                  ).length
+                                }
+                                {" - "}
+                                4th Session
                               </Typography>
                             </div>
                             {/* <div className={classes.inlining}>
