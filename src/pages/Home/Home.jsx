@@ -62,7 +62,7 @@ export default class Home extends Component {
         length: "12 Lessons",
         days: "T | W | Th",
         cost: "$125",
-        disabled: false,
+        disabled: true,
       },
       {
         name: "Session 2",
@@ -70,7 +70,7 @@ export default class Home extends Component {
         length: "12 Lessons",
         days: "T | W | Th",
         cost: "$120",
-        disabled: false,
+        disabled: true,
       },
       {
         name: "Session 3",
@@ -78,7 +78,7 @@ export default class Home extends Component {
         length: "8 Lessons",
         days: "T | W | Th | F",
         cost: "$80",
-        disabled: false,
+        disabled: true,
       },
       {
         name: "Session 4",
