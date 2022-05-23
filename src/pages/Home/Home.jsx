@@ -86,7 +86,7 @@ export default class Home extends Component {
         length: "9 Lessons",
         days: "T | W | Th",
         cost: "$90",
-        disabled: false,
+        disabled: true,
       },
       // {
       //   name: "Session 5",
