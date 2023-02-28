@@ -1,5 +1,5 @@
 .outer {
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   width: 100vw;
 }
 
@@ -224,20 +224,25 @@
   align-items: center;
 }
 
-.info {
-  width: 90%;
-  height: 200px;
+.flexColumn {
+  display: flex;
+  flex-direction: column;
   background-color: white;
   -webkit-box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  height: 200px;
   margin: 5%;
+  padding: 0px 20px;
+  font-size: 2em;
+}
+
+.info {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 0px 20px;
-  font-size: 2em;
-  transition: 0.54s;
+  height: 100%;
 }
 .info .sessionName {
   font-size: 2em;
@@ -259,10 +264,6 @@
 .info .dates {
   display: flex;
   flex-direction: column;
-}
-
-.info:hover {
-  height: 215px;
 }
 
 .diagbottomb {
@@ -316,9 +317,6 @@
   .info .dates {
     display: flex;
     flex-direction: column;
-  }
-  .info:hover {
-    height: 315px;
   }
 }
 

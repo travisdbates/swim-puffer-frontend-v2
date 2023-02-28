@@ -58,44 +58,46 @@ export default class Home extends Component {
     const sessions = [
       {
         name: "Session 1",
-        dates: "April 26 - May 19",
-        length: "12 Lessons",
+        dates: "April 11 - April 27",
+        length: "9 Lessons",
         days: "T | W | Th",
-        cost: "$125",
-        disabled: true,
+        cost: "$120",
+        disabled: false,
       },
       {
         name: "Session 2",
-        dates: "June 7 - June 30",
-        length: "12 Lessons",
+        dates: "May 2 - May 18",
+        length: "9 Lessons",
         days: "T | W | Th",
         cost: "$120",
-        disabled: true,
+        disabled: false,
       },
       {
         name: "Session 3",
-        dates: "July 12 - July 22",
-        length: "8 Lessons",
-        days: "T | W | Th | F",
-        cost: "$80",
-        disabled: true,
+        dates: "May 20 - June 15",
+        length: "9 Lessons",
+        days: "T | W | Th",
+        cost: "$115",
+        disabled: false,
       },
       {
         name: "Session 4",
-        dates: "August 2 - August 18",
-        length: "9 Lessons",
+        dates: "June 20 - July 6*",
+        length: "8 Lessons",
         days: "T | W | Th",
-        cost: "$90",
+        cost: "$100",
+        notes: "No lessons July 4th",
         disabled: false,
       },
-      // {
-      //   name: "Session 5",
-      //   dates: "August 17 - 27",
-      //   length: "8 Lessons",
-      //   days: "T | W | T | HF",
-      //   cost: "$75",
-      // disabled: false
-      // }
+      {
+        name: "Session 5",
+        dates: "August 7 - 17",
+        length: "8 Lessons",
+        days: "T | W | Th",
+        cost: "$115",
+        notes: "Last class is at 1:30 PM",
+        disabled: false,
+      },
     ];
 
     const image =
@@ -202,35 +204,42 @@ export default class Home extends Component {
         <div className="schedule2">
           {sessions.map((session, index) => {
             return (
-              <div className="info" key={index}>
-                <span className="sessionName">{session.name}</span>
-                <div className="verticalDivider" />
-                <div className="dates">
-                  <span className="sessDesc">Dates</span>
-                  <span>{session.dates}</span>
+              <div className="flexColumn" key={index}>
+                <div className="info">
+                  <span className="sessionName">{session.name}</span>
+                  <div className="verticalDivider" />
+                  <div className="dates">
+                    <span className="sessDesc">Dates</span>
+                    <span>{session.dates}</span>
+                  </div>
+                  <div className="verticalDividerS" />
+                  <div className="dates">
+                    <span className="sessDesc">Length</span>
+                    <span>{session.length}</span>
+                  </div>
+                  <div className="verticalDividerS" />
+                  <div className="dates">
+                    <span className="sessDesc">Days</span>
+                    <span>{session.days}</span>
+                  </div>
+                  <div className="verticalDividerS" />
+                  <div className="dates">
+                    <span className="sessDesc">Cost</span>
+                    <span>{session.cost}</span>
+                  </div>
+                  <div className="verticalDividerS" />
+                  <div className="dates">
+                    <span className="sessDesc" />
+                    <span style={{ fontSize: ".65em", color: "grey" }}>
+                      {session.disabled ? "Session Full" : null}
+                    </span>
+                  </div>
                 </div>
-                <div className="verticalDividerS" />
-                <div className="dates">
-                  <span className="sessDesc">Length</span>
-                  <span>{session.length}</span>
-                </div>
-                <div className="verticalDividerS" />
-                <div className="dates">
-                  <span className="sessDesc">Days</span>
-                  <span>{session.days}</span>
-                </div>
-                <div className="verticalDividerS" />
-                <div className="dates">
-                  <span className="sessDesc">Cost</span>
-                  <span>{session.cost}</span>
-                </div>
-                <div className="verticalDividerS" />
-                <div className="dates">
-                  <span className="sessDesc" />
-                  <span style={{ fontSize: ".65em", color: "grey" }}>
-                    {session.disabled ? "Session Full" : null}
+                {session.notes ? (
+                  <span style={{ color: "GrayText", marginBottom: 16 }}>
+                    * {session.notes}
                   </span>
-                </div>
+                ) : null}
               </div>
             );
           })}
