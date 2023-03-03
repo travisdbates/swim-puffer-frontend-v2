@@ -528,22 +528,28 @@ class AdminDashboard extends Component {
                                 4th Session
                               </Typography>
                             </div>
-                            {/* <div className={classes.inlining}>
-                              <Avatar className={classes.interestAvatar} />
+                            <div className={classes.inlining}>
+                              <Avatar className={classes.loanAvatar} />
                               <Typography
                                 className={classes.inlining}
                                 variant="subtitle2"
-                                gutterBottom>
-                                Other type
-                              </Typography>
+                                gutterBottom
+                              />
                               <Typography
                                 className={classes.inlining}
                                 color="secondary"
                                 variant="h6"
-                                gutterBottom>
-                                {numeral(monthlyInterest).format()} units
+                                gutterBottom
+                              >
+                                {
+                                  data.getAllStudents.filter(
+                                    (signup) => signup.sessionPreference === "5"
+                                  ).length
+                                }
+                                {" - "}
+                                5th Session
                               </Typography>
-                            </div> */}
+                            </div>
                           </div>
                           <div>
                             <AdminTable data={data.getAllStudents} />

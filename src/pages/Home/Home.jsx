@@ -74,7 +74,7 @@ export default class Home extends Component {
       },
       {
         name: "Session 3",
-        dates: "May 20 - June 15",
+        dates: "May 30 - June 15",
         length: "9 Lessons",
         days: "T | W | Th",
         cost: "$115",
@@ -91,7 +91,7 @@ export default class Home extends Component {
       },
       {
         name: "Session 5",
-        dates: "August 7 - 17",
+        dates: "August 1 - 17",
         length: "8 Lessons",
         days: "T | W | Th",
         cost: "$115",
