@@ -1,37 +1,37 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import { timeHelper } from './timeHelper';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
-import { timesForDash } from '../table/sessionTimesHelper';
-const styles = theme => ({
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import { timeHelper } from "./timeHelper";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import gql from "graphql-tag";
+import { Mutation } from "react-apollo";
+import { timesForDash } from "../table/sessionTimesHelper";
+const styles = (theme) => ({
   root: {
-    width: '100%',
+    width: "100%",
     marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto'
+    overflowX: "auto",
   },
   table: {
-    minWidth: 700
+    minWidth: 700,
   },
   rootEmpty: {
-    width: '100%',
-    height: '250px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    textAlign: 'center'
-  }
+    width: "100%",
+    height: "250px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    textAlign: "center",
+  },
 });
 
 const GET_UPDATED_STUDENT = gql`
@@ -60,11 +60,14 @@ const UPDATE_STUDENT = gql`
 `;
 
 class ParentChildTable extends Component {
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
   render() {
     const { classes, data } = this.props;
+    if (!data[0]) {
+      return null;
+    }
     if (!data[0].length > 0) {
       return (
         <Paper className={classes.rootEmpty}>
@@ -73,10 +76,11 @@ class ParentChildTable extends Component {
             aria-label="emoji"
             style={{
               fontSize: 58,
-              textAlign: 'center',
-              display: 'inline-block',
-              width: '100%'
-            }}>
+              textAlign: "center",
+              display: "inline-block",
+              width: "100%",
+            }}
+          >
             🙈
           </span>
           <span>Oops! No kiddos have been signed up yet!</span>
@@ -87,7 +91,7 @@ class ParentChildTable extends Component {
 
     return (
       <Mutation mutation={UPDATE_STUDENT}>
-        {updateStudent => (
+        {(updateStudent) => (
           <Paper className={classes.root}>
             <Table className={classes.table}>
               <TableHead>
@@ -108,7 +112,7 @@ class ParentChildTable extends Component {
                       new Date(b.sessionPreference)
                     );
                   })
-                  .map(row => (
+                  .map((row) => (
                     <TableRow hover key={row.firstName + row.sessionPreference}>
                       <TableCell component="th" scope="row">
                         {row.firstName}
@@ -116,18 +120,19 @@ class ParentChildTable extends Component {
                       <TableCell component="th" scope="row">
                         <Select
                           value={row.age}
-                          onChange={async e => {
+                          onChange={async (e) => {
                             e.preventDefault();
                             await updateStudent({
                               variables: {
                                 email: this.props.email,
                                 firstName: row.firstName,
-                                age: e.target.value
-                              }
+                                age: e.target.value,
+                              },
                             });
                             window.location.reload();
                           }}
-                          input={<OutlinedInput labelWidth={1} name="age" />}>
+                          input={<OutlinedInput labelWidth={1} name="age" />}
+                        >
                           <MenuItem value="">
                             <em>Select an option</em>
                           </MenuItem>
@@ -160,10 +165,10 @@ class ParentChildTable extends Component {
                         {/* {row.timePreference} */}
                       </TableCell>
                       <TableCell align="right">
-                        {row.emailSent ? row.sessionAssigned : 'N/A'}
+                        {row.emailSent ? row.sessionAssigned : "N/A"}
                       </TableCell>
                       <TableCell align="right">
-                        {row.emailSent ? timesForDash[row.timeAssigned] : 'N/A'}
+                        {row.emailSent ? timesForDash[row.timeAssigned] : "N/A"}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -177,7 +182,7 @@ class ParentChildTable extends Component {
 }
 
 ParentChildTable.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(ParentChildTable);

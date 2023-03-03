@@ -511,7 +511,7 @@ class Signup extends Component {
                                         value="session_2"
                                       />
                                     }
-                                    label="Session 2 - 5/2-5/18 - $120"
+                                    label="Session 2 - 5/2-5/18 - $120 (Includes $5 heating fee)"
                                   />
                                   <FormControlLabel
                                     control={
@@ -524,12 +524,12 @@ class Signup extends Component {
                                         value="session_3"
                                       />
                                     }
-                                    label="Session 3 - 5/20-6/15 - $115"
+                                    label="Session 3 - 5/30-6/15 - $115"
                                   />
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={true}
+                                        disabled={false}
                                         checked={session_4}
                                         onChange={this.handleChangeCheckbox(
                                           "session_4"
@@ -550,7 +550,7 @@ class Signup extends Component {
                                         value="session_5"
                                       />
                                     }
-                                    label="Session 5 - 8/7-8/17 - $115"
+                                    label="Session 5 - 8/1-8/17 - $115"
                                   />
                                 </FormGroup>
                               </Grid>
