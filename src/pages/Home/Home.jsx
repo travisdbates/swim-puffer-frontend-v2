@@ -87,7 +87,7 @@ export default class Home extends Component {
         days: "T | W | Th",
         cost: "$100",
         notes: "No lessons July 4th",
-        disabled: false,
+        disabled: true,
       },
       {
         name: "Session 5",
