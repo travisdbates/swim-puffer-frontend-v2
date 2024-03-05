@@ -490,7 +490,7 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={true}
+                                        disabled={false}
                                         checked={session_1}
                                         onChange={this.handleChangeCheckbox(
                                           "session_1"
@@ -498,12 +498,12 @@ class Signup extends Component {
                                         value="session_1"
                                       />
                                     }
-                                    label="Session 1 - 4/11-4/27 - $120 (Includes $5 heating fee)"
+                                    label="Session 1 - 4/16-4/16 - $115 (Includes $5 heating fee)"
                                   />
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={true}
+                                        disabled={false}
                                         checked={session_2}
                                         onChange={this.handleChangeCheckbox(
                                           "session_2"
@@ -511,12 +511,12 @@ class Signup extends Component {
                                         value="session_2"
                                       />
                                     }
-                                    label="Session 2 - 5/2-5/18 - $120 (Includes $5 heating fee)"
+                                    label="Session 2 - 5/28-6/13 - $115"
                                   />
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={true}
+                                        disabled={false}
                                         checked={session_3}
                                         onChange={this.handleChangeCheckbox(
                                           "session_3"
@@ -524,12 +524,12 @@ class Signup extends Component {
                                         value="session_3"
                                       />
                                     }
-                                    label="Session 3 - 5/30-6/15 - $115"
+                                    label="Session 3 - 6/18-7/3 - $105"
                                   />
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={true}
+                                        disabled={false}
                                         checked={session_4}
                                         onChange={this.handleChangeCheckbox(
                                           "session_4"
@@ -537,9 +537,9 @@ class Signup extends Component {
                                         value="session_4"
                                       />
                                     }
-                                    label="Session 4  - 6/20-7/6 - $100 (No class 7/4)"
+                                    label="Session 4  - 7/30-8/15 - $100"
                                   />
-                                  <FormControlLabel
+                                  {/* <FormControlLabel
                                     control={
                                       <Checkbox
                                         disabled={false}
@@ -551,7 +551,7 @@ class Signup extends Component {
                                       />
                                     }
                                     label="Session 5 - 8/1-8/17 - $115"
-                                  />
+                                  /> */}
                                 </FormGroup>
                               </Grid>
                             </Grid>
