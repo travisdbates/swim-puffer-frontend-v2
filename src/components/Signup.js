@@ -180,13 +180,8 @@ class Signup extends Component {
   }
 
   isSessionSelected = () => {
-    const {
-      session_1,
-      session_2,
-      session_3,
-      session_4,
-      session_5,
-    } = this.state;
+    const { session_1, session_2, session_3, session_4, session_5 } =
+      this.state;
     return !session_1 && !session_2 && !session_3 && !session_4 && !session_5;
   };
 
@@ -208,13 +203,8 @@ class Signup extends Component {
   };
 
   timeSelectFields = () => {
-    const {
-      session_1,
-      session_2,
-      session_3,
-      session_4,
-      session_5,
-    } = this.state;
+    const { session_1, session_2, session_3, session_4, session_5 } =
+      this.state;
     let sessions = {
       session_1,
       session_2,
@@ -490,7 +480,7 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={false}
+                                        disabled={true}
                                         checked={session_1}
                                         onChange={this.handleChangeCheckbox(
                                           "session_1"
@@ -503,7 +493,7 @@ class Signup extends Component {
                                   <FormControlLabel
                                     control={
                                       <Checkbox
-                                        disabled={false}
+                                        disabled={true}
                                         checked={session_2}
                                         onChange={this.handleChangeCheckbox(
                                           "session_2"
@@ -580,10 +570,7 @@ class Signup extends Component {
                                       .join(" ")
                                       .charAt(0)
                                       .toUpperCase() +
-                                    time
-                                      .split("_")
-                                      .join(" ")
-                                      .slice(1);
+                                    time.split("_").join(" ").slice(1);
 
                                   let stateTime = time.split("_").join("Time");
                                   return (
@@ -656,10 +643,7 @@ class Signup extends Component {
                                       .join(" ")
                                       .charAt(0)
                                       .toUpperCase() +
-                                    time
-                                      .split("_")
-                                      .join(" ")
-                                      .slice(1);
+                                    time.split("_").join(" ").slice(1);
 
                                   let stateNotes = time
                                     .split("_")
@@ -784,7 +768,8 @@ class Signup extends Component {
                                         session_5,
                                         session_6,
                                       ],
-                                      timePreference: this.selectedSessionTimes(),
+                                      timePreference:
+                                        this.selectedSessionTimes(),
                                       notes: [
                                         sessionNotes1,
                                         sessionNotes2,
