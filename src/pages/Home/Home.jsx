@@ -9,7 +9,6 @@ import "animate.css/animate.min.css";
 
 import c from "../../assets/celeste.jpeg";
 import t from "../../assets/tarryn.jpeg";
-import k from "../../assets/Kiley.jpeg";
 
 export default class Home extends Component {
   componentDidMount() {
@@ -36,15 +35,7 @@ export default class Home extends Component {
           "tive synchronized swimmer for many years.",
         para2:
           "I also find joy in working with children. I graduated in elementary education & " +
-          "have 4 children of my own.",
-      },
-      {
-        name: "Kiley",
-        img: k,
-        para1:
-          "I grew up in the same spot as your kids, taking lessons from Celeste! Since then I have swam for about 14 years on swim team and in high school, taught many lessons, and coached swim team!",
-        para2:
-          "I love helping kids be able to learn new techniques and be able to swim on their own!",
+          "have 5 children of my own.",
       },
     ];
 
